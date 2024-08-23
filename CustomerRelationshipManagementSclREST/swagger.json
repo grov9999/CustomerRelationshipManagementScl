@@ -18,12 +18,108 @@
           }
         },
         "produces" : [ "application/json" ],
-        "description" : "Retrieve retrieve",
+        "description" : "Consultar el código de sectorista",
         "parameters" : [ {
           "required" : true,
           "name" : "accountsExecutiveId",
           "in" : "path",
           "type" : "string"
+        }, {
+          "name" : "parentId",
+          "in" : "header",
+          "type" : "string"
+        }, {
+          "name" : "timeStamp",
+          "in" : "header",
+          "type" : "string",
+          "required" : true,
+          "description" : "Fecha y hora de la transacción"
+        }, {
+          "name" : "deviceId",
+          "in" : "header",
+          "type" : "string"
+        }, {
+          "name" : "serverId",
+          "in" : "header",
+          "type" : "string"
+        }, {
+          "name" : "consumerId",
+          "in" : "header",
+          "type" : "string",
+          "required" : true,
+          "description" : "Identificador de la aplicación donde se originó la transacción"
+        }, {
+          "name" : "messageId",
+          "in" : "header",
+          "type" : "string",
+          "required" : true,
+          "description" : "Identificador único de la transacción del consumidor"
+        }, {
+          "name" : "traceId",
+          "in" : "header",
+          "type" : "string"
+        }, {
+          "name" : "cardIdType",
+          "in" : "header",
+          "type" : "string"
+        }, {
+          "name" : "funcionalidadId",
+          "in" : "header",
+          "type" : "string"
+        }, {
+          "name" : "referenceNumber",
+          "in" : "header",
+          "type" : "string"
+        }, {
+          "name" : "countryCode",
+          "in" : "header",
+          "type" : "string",
+          "required" : true,
+          "description" : "Código del país donde se originó la transacción"
+        }, {
+          "name" : "groupMember",
+          "in" : "header",
+          "type" : "string",
+          "required" : true,
+          "description" : "Identificador de miembro del grupo"
+        }, {
+          "name" : "serviceId",
+          "in" : "header",
+          "type" : "string",
+          "required" : true,
+          "description" : "Identificador del servicio invocado"
+        }, {
+          "name" : "ipOrigen",
+          "in" : "header",
+          "type" : "string",
+          "required" : true,
+          "description" : "Identificador del módulo de la aplicación"
+        }, {
+          "name" : "moduloId",
+          "in" : "header",
+          "type" : "string"
+        }, {
+          "name" : "supervisor",
+          "in" : "header",
+          "type" : "string"
+        }, {
+          "name" : "userId",
+          "in" : "header",
+          "type" : "string"
+        }, {
+          "name" : "branchId",
+          "in" : "header",
+          "type" : "string"
+        }, {
+          "name" : "netId",
+          "in" : "header",
+          "type" : "string"
+        }, {
+          "name" : "channelId",
+          "in" : "header",
+          "type" : "string",
+          "required" : true,
+          "description" : "Código del cana donde se generó la transacción"
         } ]
       }
     }
