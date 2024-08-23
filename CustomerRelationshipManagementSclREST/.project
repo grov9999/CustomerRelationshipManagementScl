@@ -3,6 +3,9 @@
 	<name>CustomerRelationshipManagementSclREST</name>
 	<comment></comment>
 	<projects>
+		<project>CustomerRelationshipManagementSclLIB</project>
+		<project>common-core-library</project>
+		<project>control-core-library</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
