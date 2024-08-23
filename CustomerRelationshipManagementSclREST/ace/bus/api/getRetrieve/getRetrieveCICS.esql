@@ -1,9 +1,37 @@
 BROKER SCHEMA ace.bus.api.getRetrieve
-
+PATH pe.ibk.common, pe.ibk.common.audit;
 
 CREATE COMPUTE MODULE getRetrieveCICS_PrepareReq
 	CREATE FUNCTION Main() RETURNS BOOLEAN
 	BEGIN
+		
+		DECLARE refParametersIn REFERENCE TO InputLocalEnvironment.REST.Input.Parameters;
+		DECLARE codigo REFERENCE TO InputLocalEnvironment.REST.Input.Parameters.accountsExecutived;
+		DECLARE refBody REFERENCE TO InputRoot.JSON.Data;
+		DECLARE refEnv REFERENCE TO Environment;
+		DECLARE refEnvAudit REFERENCE TO refEnv.Audit;
+		DECLARE refOut REFERENCE TO OutputRoot;
+		
+		--Audit input data
+		CALL getInputDataAudit(refEnv, InputLocalEnvironment, InputRoot);
+		
+		CALL setPropertiesMessage(refOut, getENCODING_HOST(),getCCSID_HOST());
+		
+		--Set Service secuence
+		SET refEnv.Srv.Secuence = '01';
+
+		CREATE LASTCHILD OF OutputRoot DOMAIN 'DFDL';
+		DECLARE refBodyOut REFERENCE TO OutputRoot.DFDL;
+
+		CALL prepareDataRequestCICS(refBodyOut, refEnv,refParametersIn, refBody,codigo);
+		CALL setConfigPropertiesCICS(OutputLocalEnvironment,refEnv);
+		
+		--Audit request data
+		CALL setMonitoringRequestTime(refEnv);
+		CALL getRequestDataAudit(refEnv, OutputRoot, OutputLocalEnvironment);
+		
+		SET Environment.GROVER.DataCICS = CAST( ASBITSTREAM(OutputRoot.DFDL CCSID getCCSID_HOST() ENCODING getENCODING_HOST()) AS CHARACTER CCSID getCCSID_HOST() ENCODING getENCODING_HOST());
+		PROPAGATE TO LABEL 'localFlow';
 
 		RETURN FALSE;
 	END;

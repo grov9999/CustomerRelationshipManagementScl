@@ -1,2 +1,30 @@
 BROKER SCHEMA ace.bus.api.getRetrieve
+PATH ace.bus.api.getRetrieve, pe.ibk.common;
 
+CREATE PROCEDURE prepareDataRequestCICS(IN refOut REFERENCE, IN refEnv REFERENCE, IN refParameters REFERENCE, IN refBodyIn REFERENCE, IN cod REFERENCE)
+BEGIN
+	DECLARE refBody REFERENCE TO refOut;
+	DECLARE isBSEOJIN CHARACTER getParmSecSrv(refEnv, 'BSEOJIN');
+	
+	IF isBSEOJIN = 'S' THEN
+		CALL prepareHeaderBSEOJINT(refOut, refEnv, C_NS, refParameters, C_POS_COD_RESP, C_LONG_COD_RESP);
+		CREATE FIELD refOut.{C_NS}:MESSAGEHOST.BODY AS refOut;
+	ELSE
+		CALL prepareHeaderBSE(refOut,refParameters);
+		CREATE FIELD refOut.{C_MESSAGE_TYPE} AS refOut;
+	END IF;
+--	Configurar la data del mensaje
+	CALL prepareDataCICS(refEnv, refOut, refBody, refParameters, cod);
+END;
+
+CREATE PROCEDURE prepareDataCICS(IN refEnv REFERENCE, IN refOut REFERENCE, IN refBody REFERENCE, IN refParameters REFERENCE, IN cod REFERENCE)
+BEGIN
+	
+	CREATE FIELD refOut.SCLCA031_DATOS_INPUT;
+	DECLARE refBodyOut REFERENCE TO refOut.SCLCA031_DATOS_INPUT;
+	
+	SET refBodyOut.SCLCA031_CO_SCTA5_I.SCLCA031_CO_SCTA5 = FormatAlignCadena(cod,5, ' ', 'IZQ');
+	SET refBodyOut.SCLCA031_CO_SCTA5_I.fill_0 = FormatAlignCadena(' ',4, ' ', 'IZQ');
+	SET refBodyOut.SCLCA031_FILLER_I = FormatAlignCadena(' ',11, ' ', 'IZQ');
+
+END;
