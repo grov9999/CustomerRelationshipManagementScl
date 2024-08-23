@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmTrace.msgnode="ComIbmTrace.msgnode" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow" xmlns:pe_ibk_control_getControlInitial.subflow="pe/ibk/control/getControlInitial.subflow" xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility" nsURI="getRetrieve.subflow" nsPrefix="getRetrieve.subflow">
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmTrace.msgnode="ComIbmTrace.msgnode" xmlns:ace_bus_api_getRetrieve_getRetrieveCICS.subflow="ace/bus/api/getRetrieve/getRetrieveCICS.subflow" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow" xmlns:pe_ibk_control_getControlInitial.subflow="pe/ibk/control/getControlInitial.subflow" xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility" nsURI="getRetrieve.subflow" nsPrefix="getRetrieve.subflow">
   <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1" nodeLayoutStyle="SQUARE">
     <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
     <translation xmi:type="utility:TranslatableString" key="getRetrieve" bundleName="getRetrieve" pluginId="CustomerRelationshipManagementSclREST"/>
@@ -9,7 +9,7 @@
       <nodes xmi:type="eflow:FCMSource" xmi:id="InTerminal.Input_1" location="59,195">
         <translation xmi:type="utility:TranslatableString" key="Input" bundleName="getRetrieve" pluginId="CustomerRelationshipManagementSclREST"/>
       </nodes>
-      <nodes xmi:type="eflow:FCMSink" xmi:id="OutTerminal.Output_1" location="665,193">
+      <nodes xmi:type="eflow:FCMSink" xmi:id="OutTerminal.Output_1" location="650,194">
         <translation xmi:type="utility:TranslatableString" key="Output" bundleName="getRetrieve" pluginId="CustomerRelationshipManagementSclREST"/>
       </nodes>
       <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="162,193">
@@ -21,10 +21,14 @@
       <nodes xmi:type="pe_ibk_control_getControlInitial.subflow:FCMComposite_1" xmi:id="FCMComposite_1_4" location="259,190">
         <translation xmi:type="utility:ConstantString" string="getControlInitial"/>
       </nodes>
+      <nodes xmi:type="ace_bus_api_getRetrieve_getRetrieveCICS.subflow:FCMComposite_1" xmi:id="FCMComposite_1_5" location="518,195">
+        <translation xmi:type="utility:ConstantString" string="getRetrieveCICS"/>
+      </nodes>
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_2" targetNode="FCMComposite_1_2" sourceNode="InTerminal.Input_1" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
-      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_5" targetNode="OutTerminal.Output_1" sourceNode="FCMComposite_1_3" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_6" targetNode="FCMComposite_1_4" sourceNode="FCMComposite_1_2" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.Input"/>
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_7" targetNode="FCMComposite_1_3" sourceNode="FCMComposite_1_4" sourceTerminalName="OutTerminal.Output" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_8" targetNode="FCMComposite_1_5" sourceNode="FCMComposite_1_3" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.Input"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_9" targetNode="OutTerminal.Output_1" sourceNode="FCMComposite_1_5" sourceTerminalName="OutTerminal.Output" targetTerminalName="InTerminal.in"/>
     </composition>
     <propertyOrganizer/>
     <stickyBoard/>
