@@ -1,7 +1,18 @@
-<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:csv="http://www.ibm.com/dfdl/CommaSeparatedFormat" xmlns:dfdl="http://www.ogf.org/dfdl/dfdl-1.0/" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:ibmDfdlExtn="http://www.ibm.com/dfdl/extensions" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions">
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://interbank.com.pe/api/customer-relationship-management/v1/account-executive/accountsExecutiveId/retrieve" xmlns:csv="http://www.ibm.com/dfdl/CommaSeparatedFormat" xmlns:dfdl="http://www.ogf.org/dfdl/dfdl-1.0/" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:ibmDfdlExtn="http://www.ibm.com/dfdl/extensions" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" xmlns:ns0="http://interbank.com.pe/api/customer-relationship-management/v1/account-executive/accountsExecutiveId/retrieve">
 
 
+        <xsd:include schemaLocation="TLDCPAGO.xsd"/>
+    <xsd:include schemaLocation="SCLCA031.xsd"/>
+    <xsd:include schemaLocation="BSEC0199.xsd"/>
     <xsd:import namespace="http://www.ibm.com/dfdl/CommaSeparatedFormat" schemaLocation="IBMdefined/CommaSeparatedFormat.xsd"/>
+        <xsd:element name="MESSAGEHOST">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="HEADER" type="ns0:BSEC0199COMMAREA"/>
+        <xsd:element name="BODY" type="ns0:SCLCA031COMMAREA"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
     <xsd:annotation>
 		<xsd:appinfo source="http://www.ogf.org/dfdl/">
 			<dfdl:format documentFinalTerminatorCanBeMissing="yes" encoding="{$dfdl:encoding}" escapeSchemeRef="csv:CSVEscapeScheme" ref="csv:CommaSeparatedFormat"/>
