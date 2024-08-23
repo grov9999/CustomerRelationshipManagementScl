@@ -18,7 +18,7 @@
       <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="395,192">
         <translation xmi:type="utility:ConstantString" string="TDebug_2"/>
       </nodes>
-      <nodes xmi:type="pe_ibk_control_getControlInitial.subflow:FCMComposite_1" xmi:id="FCMComposite_1_4" location="259,190">
+      <nodes xmi:type="pe_ibk_control_getControlInitial.subflow:FCMComposite_1" xmi:id="FCMComposite_1_4" location="259,190" RedactPolicyName="{CustomerRelationshipManagementSclPOLICY}:configAudit" RedactPolicyProperty="getRetrieve" ConfigPolicyName="{CustomerRelationshipManagementSclPOLICY}:configProperties" ConfigPolicyProperty="getRetrieve">
         <translation xmi:type="utility:ConstantString" string="getControlInitial"/>
       </nodes>
       <nodes xmi:type="ace_bus_api_getRetrieve_getRetrieveCICS.subflow:FCMComposite_1" xmi:id="FCMComposite_1_5" location="518,195">
