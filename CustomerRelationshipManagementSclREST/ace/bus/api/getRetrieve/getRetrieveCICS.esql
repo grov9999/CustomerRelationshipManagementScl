@@ -78,6 +78,32 @@ END MODULE;
 CREATE COMPUTE MODULE getRetrieveCICS_PrepareError
 	CREATE FUNCTION Main() RETURNS BOOLEAN
 	BEGIN
+		
+		CALL setMonitoringResponseTime(Environment);
+
+		IF(InputLocalEnvironment.CICS.AbendCode IS NOT NULL) THEN
+			CALL createResponseStatus(Environment,getTIP_RSPTA_3(),getCOD_ERROR_302(),getEST_MSG_503(),InputLocalEnvironment.CICS.AbendCode,InputLocalEnvironment.CICS.AbendCode);
+		ELSE
+			CALL createResponseStatus(Environment,getTIP_RSPTA_3(),0,getEST_MSG_503(),NULL,NULL);
+			CALL createStatusErrorCICS(InputExceptionList,Environment.StatusRes);
+		END IF;
+		
+		IF(Environment.Parametros.{Environment.Operataion}.EQUIVRES = 'S') THEN
+			IF (FIELDNAME(Environment.StatusRes.status) IS NOT NULL) THEN
+				SET Environment.StatusRes.status.srvResponseCode	= COALESCE(Environment.Equivalencias.{Environment.Operation}.{'CODEQV_'||InputLocalEnvironment.CICS.AbendCode},InputLocalEnvironment.CICS.AbendCode);
+				SET Environment.StatusRes.stauts.srvResponseMessage = COALESCE(Environment.Equivalencias.{Environment.Operation}.{'DESEQV_'||InputLocalEnvironment.CICS.AbendCode},InputLocalEnvironment.CICS.AbendCode);
+			END IF;
+		END IF;
+		
+		SET OutputLocalEnvironment.Destination.HTTP.ReplyStatusCode = getEST_COD_503();
+		CALL createHeaderBus(OutputRoot,Environment);
+		
+--		Store the exception in the environment
+		SET Environment.DataAudit.ExceptionDetail = getFullExceptionDetail(InputExceptionList);
+		
+--		Audit response and reply data
+		CALL setMonitoringEndTime(Environment);
+		CALL getResponseDataAudit(Environment, OutputRoot, OutputLocalEnvironment, '5');
 
 		RETURN TRUE;
 	END;
