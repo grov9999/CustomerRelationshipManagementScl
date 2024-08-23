@@ -28,3 +28,16 @@ BEGIN
 	SET refBodyOut.SCLCA031_FILLER_I = FormatAlignCadena(' ',11, ' ', 'IZQ');
 
 END;
+
+CREATE PROCEDURE prepareResponseJSON(IN refOut REFERENCE, IN refEnv REFERENCE)
+BEGIN
+	
+	CREATE LASTCHILD OF refOut DOMAIN 'JSON';
+	CREATE FIELD refOut.JSON.Data;
+	DECLARE refOutData REFERENCE TO refOut.JSON.Data;
+	
+	
+	SET refOutData.accountsExecutiveRegistration = refEnv.MOCK.SCLCA031_ID_SCTA_O;
+    SET refOutData.accountsExecutiveName = refEnv.MOCK.SCLCA031_NO_SCTA_O;
+
+END;
