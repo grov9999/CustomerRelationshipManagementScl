@@ -1,0 +1,32 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "title" : "CustomerRelationshipManagementSclREST",
+    "version" : "1.0.0",
+    "description" : "CustomerRelationshipManagementSclREST"
+  },
+  "paths" : {
+    "/account-executive/{accountsExecutiveId}/retrieve" : {
+      "get" : {
+        "operationId" : "getRetrieve",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "type" : "string"
+            }
+          }
+        },
+        "produces" : [ "application/json" ],
+        "description" : "Retrieve retrieve",
+        "parameters" : [ {
+          "required" : true,
+          "name" : "accountsExecutiveId",
+          "in" : "path",
+          "type" : "string"
+        } ]
+      }
+    }
+  },
+  "basePath" : "/customerrelationshipmanagementsclrest/v1"
+}
