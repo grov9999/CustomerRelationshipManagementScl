@@ -15,6 +15,42 @@
             "schema" : {
               "type" : "string"
             }
+          },
+          "210" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "type" : "string"
+            }
+          },
+          "500" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "type" : "string"
+            }
+          },
+          "404" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "type" : "string"
+            }
+          },
+          "503" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "type" : "string"
+            }
+          },
+          "504" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "type" : "string"
+            }
+          },
+          "201" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "type" : "string"
+            }
           }
         },
         "produces" : [ "application/json" ],
